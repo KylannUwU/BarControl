@@ -1,0 +1,58 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+.progress-overlay {
+    position: absolute;
+    bottom: 50px; /* Espacio desde el fondo */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1000px; /* Ancho total de la barra */
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0); /* Transparente */
+}
+
+.progress-bar {
+    width: 100%;
+    max-width: 900px; /* Ancho máximo de la barra */
+    height: 50px;
+    background-color: rgba(204, 173, 200, 0.75); /* Color de fondo */
+    border-radius: 25px; /* Bordes redondeados */
+    border: 5px solid rgb(29, 0, 32); /* Borde de la barra */
+    position: relative;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0; /* Inicialmente sin progreso */
+    background-color: rgb(197, 124, 219);
+    border-radius: 20px 0 0 20px; /* Bordes redondeados en el lado izquierdo */
+    transition: width 0.3s ease; /* Animación suave del progreso */
+}
+
+.progress-arrow {
+    position: absolute;
+    top: -45px; /* Posición vertical fuera de la barra */
+    left: calc(0% - 30px); /* Inicialmente alineada al inicio de la barra */
+    width: 40px; /* Tamaño de la imagen de la flecha */
+    height: auto; /* Mantener relación de aspecto */
+    z-index: 20; /* Asegurarse de que esté encima de la barra */
+    transition: left 0.3s ease; /* Animación suave para la posición de la flecha */
+}
+
+#progress-number {
+    font-family: "Tiny5", sans-serif;
+    font-size: 25px;
+    margin-top: 10px; /* Espacio entre la barra y el número */
+    color: rgb(0, 0, 0); /* Asegúrate de que el texto sea visible */
+    background-color: white; /* Fondo blanco para los números */
+    padding: 5px; /* Espacio interno alrededor del texto */
+    border-radius: 5px; /* Bordes redondeados opcional */
+    display: inline-block; /* Asegura que el fondo se ajuste al tamaño del contenido */
+}

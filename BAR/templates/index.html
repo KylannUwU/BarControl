@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap');
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <title>Barra de Progreso</title>
+</head>
+<body>
+    <div class="progress-overlay">
+        <div class="progress-bar">
+            <div class="progress-bar-fill" style="width: 0%;"></div>
+            <img src="{{ url_for('static', filename='images/arrow.gif') }}" class="progress-arrow" alt="Flecha">
+        </div>
+        <div id="progress-number">0%</div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        // Conectar a SocketIO
+        const socket = io();
+
+        socket.on('progress_update', (data) => {
+            const percentage = data.percentage;
+            const currentValue = data.current_value;
+
+            // Actualizar la barra de progreso
+            document.querySelector('.progress-bar-fill').style.width = percentage + '%';
+            document.getElementById('progress-number').innerText = percentage + '%';
+
+            // Mover la imagen a la posición correcta
+            const arrow = document.querySelector('.progress-arrow');
+            arrow.style.left = `calc(${percentage}% - 20px)`;
+        });
+    </script>
+</body>
+</html>
