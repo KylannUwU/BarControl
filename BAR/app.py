@@ -34,5 +34,6 @@ def get_current_progress():
     """Devuelve el valor actual de la barra de progreso."""
     return jsonify({'current_value': current_value})
 
-if __name__ == '__main__':
-    socketio.run(app, debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
+
